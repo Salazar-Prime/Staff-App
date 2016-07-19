@@ -123,4 +123,10 @@ public class hostelname extends AppCompatActivity {
         intent = new Intent(getApplicationContext(), roomnumber.class);
         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     }
-}
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+}//hostelname

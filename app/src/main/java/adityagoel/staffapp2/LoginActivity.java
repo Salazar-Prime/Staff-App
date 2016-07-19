@@ -75,72 +75,78 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-private class PostClass extends AsyncTask<String, Void, Void> {
+    private class PostClass extends AsyncTask<String, Void, Void> {
 
-    private final Context context;
-    private final String user;
-    private final String password;
-    private final View v;
+        private final Context context;
+        private final String user;
+        private final String password;
+        private final View v;
 
-    public PostClass(Context c, String s, String s1, View view) {
-        this.context = c;
-        user = s;
-        password = s1;
-        v = view;
-    }//Constructor
+        public PostClass(Context c, String s, String s1, View view) {
+            this.context = c;
+            user = s;
+            password = s1;
+            v = view;
+        }//Constructor
 
-    protected void onPreExecute() {
-        progress = new ProgressDialog(this.context);
-        progress.setMessage("Verifying");
-        progress.show();
+        protected void onPreExecute() {
+            progress = new ProgressDialog(this.context);
+            progress.setMessage("Verifying");
+            progress.show();
+        }
+
+        @Override
+        protected Void doInBackground(String... params) {
+            try {
+
+                final String ip_pref = "Server IP";
+                SharedPreferences sp=getSharedPreferences(ip_pref, Context.MODE_PRIVATE);
+                String url_login="http://"+sp.getString("IP_address","default")+"/index";
+                URL url = new URL(url_login);
+                final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                String urlParameters = "username="+user+"&pass="+password;
+
+                connection.setRequestMethod("POST");
+                connection.setDoOutput(true);
+                DataOutputStream dStream = new DataOutputStream(connection.getOutputStream());
+                dStream.writeBytes(urlParameters);
+                dStream.flush();
+                dStream.close();
+                responseCode = connection.getResponseCode();
+                System.out.println("\nSending 'POST' request to URL : " + url);
+                System.out.println("Post parameters : " + urlParameters);
+                System.out.println("Response Code : " + responseCode);
+
+                LoginActivity.this.runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        progress.dismiss();
+                        System.out.println(responseCode);
+                        if(responseCode==200){
+                            Intent intent = new Intent(getApplicationContext(), hostelname.class);
+                            startActivity(intent);
+                        }
+                        else if(responseCode==401){
+                            Snackbar.make(v,"Incorrect Password or username",Snackbar.LENGTH_LONG).show();
+                        }
+                    }
+                });
+
+            } catch (MalformedURLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return null;
+        }//doInBackGround
+    }//PostClass
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
-    @Override
-    protected Void doInBackground(String... params) {
-        try {
-
-            final String ip_pref = "Server IP";
-            SharedPreferences sp=getSharedPreferences(ip_pref, Context.MODE_PRIVATE);
-            String url_login="http://"+sp.getString("IP_address","default")+"/index";
-            URL url = new URL(url_login);
-            final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            String urlParameters = "username="+user+"&pass="+password;
-
-            connection.setRequestMethod("POST");
-            connection.setDoOutput(true);
-            DataOutputStream dStream = new DataOutputStream(connection.getOutputStream());
-            dStream.writeBytes(urlParameters);
-            dStream.flush();
-            dStream.close();
-            responseCode = connection.getResponseCode();
-            System.out.println("\nSending 'POST' request to URL : " + url);
-            System.out.println("Post parameters : " + urlParameters);
-            System.out.println("Response Code : " + responseCode);
-
-            LoginActivity.this.runOnUiThread(new Runnable() {
-
-                @Override
-                public void run() {
-                    progress.dismiss();
-                    System.out.println(responseCode);
-                    if(responseCode==200){
-                        Intent intent = new Intent(getApplicationContext(), hostelname.class);
-                        startActivity(intent);
-                    }
-                    else if(responseCode==401){
-                        Snackbar.make(v,"Incorrect Password or username",Snackbar.LENGTH_LONG).show();
-                    }
-                }
-            });
-
-        } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return null;
-    }//doInBackGround
-}//PostClass
 }//LoginActivity

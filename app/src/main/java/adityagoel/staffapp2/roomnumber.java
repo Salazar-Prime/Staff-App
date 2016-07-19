@@ -149,4 +149,12 @@ public class roomnumber extends AppCompatActivity {
         intent = new Intent(getApplicationContext(), infodisplay.class);
         prefs2 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        intent = new Intent(getApplicationContext(), hostelname.class);
+        startActivity(intent);
+    }
+
 }
