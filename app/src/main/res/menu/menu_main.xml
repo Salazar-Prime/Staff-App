@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="adityagoel.staffapp2.LoginActivity">
+    <item
+    android:id="@+id/ip_config"
+    android:orderInCategory="10"
+    android:title="IP config"
+    app:showAsAction="never" />
+
+    <item
+        android:id="@+id/skip"
+        android:orderInCategory="100"
+        android:title="Skip Login"
+        app:showAsAction="never" />
+
+</menu>
