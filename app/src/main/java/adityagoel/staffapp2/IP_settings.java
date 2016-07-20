@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class IP_settings extends AppCompatActivity {
 
-    public static final String ip_pref = "Server IP";
+    public static final String ip_pref = "Server params";
     SharedPreferences sp;
     EditText et1;
     Button b1;

@@ -1,6 +1,7 @@
 package adityagoel.staffapp2;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -124,6 +125,13 @@ public class roomnumber extends AppCompatActivity {
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
+            final String ip_pref = "Server params";
+            SharedPreferences sp=getSharedPreferences(ip_pref, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("Login_Flag","0");
+            editor.commit();
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
             return true;
         }
 
@@ -152,7 +160,7 @@ public class roomnumber extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        //super.onBackPressed();
         intent = new Intent(getApplicationContext(), hostelname.class);
         startActivity(intent);
     }

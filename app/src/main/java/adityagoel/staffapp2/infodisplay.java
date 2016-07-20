@@ -158,10 +158,10 @@ public class infodisplay extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        //super.onBackPressed();
         Intent intent = new Intent(getApplicationContext(), roomnumber.class);
-    startActivity(intent);
-}
+        startActivity(intent);
+    }
 
 
 }//infodisplay

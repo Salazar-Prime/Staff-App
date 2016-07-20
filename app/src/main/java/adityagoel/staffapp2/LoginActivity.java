@@ -23,12 +23,25 @@ import java.net.URL;
 
 public class LoginActivity extends AppCompatActivity {
 
+    SharedPreferences sp;
     private ProgressDialog progress;
     EditText user;
     EditText password;
     int responseCode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
+        try {
+            final String ip_pref = "Server params";
+            SharedPreferences sp=getSharedPreferences(ip_pref, Context.MODE_PRIVATE);
+            if(sp.getString("Login_Flag","default").equalsIgnoreCase("1")){
+                Intent intent = new Intent(getApplicationContext(), hostelname.class);
+                startActivity(intent);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         user= (EditText) findViewById(R.id.email);
@@ -60,6 +73,11 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         if (id == R.id.skip) {
+            final String ip_pref = "Server params";
+            SharedPreferences sp=getSharedPreferences(ip_pref, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("Login_Flag","1");
+            editor.commit();
             Intent intent = new Intent(getApplicationContext(), hostelname.class);
             startActivity(intent);
             return true;
@@ -99,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
         protected Void doInBackground(String... params) {
             try {
 
-                final String ip_pref = "Server IP";
+                final String ip_pref = "Server params";
                 SharedPreferences sp=getSharedPreferences(ip_pref, Context.MODE_PRIVATE);
                 String url_login="http://"+sp.getString("IP_address","default")+"/index";
                 URL url = new URL(url_login);
@@ -124,6 +142,11 @@ public class LoginActivity extends AppCompatActivity {
                         progress.dismiss();
                         System.out.println(responseCode);
                         if(responseCode==200){
+                            final String ip_pref = "Server params";
+                            SharedPreferences sp=getSharedPreferences(ip_pref, Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sp.edit();
+                            editor.putString("Login_Flag","1");
+                            editor.commit();
                             Intent intent = new Intent(getApplicationContext(), hostelname.class);
                             startActivity(intent);
                         }
@@ -145,8 +168,14 @@ public class LoginActivity extends AppCompatActivity {
     }//PostClass
 
     public void onBackPressed() {
-        super.onBackPressed();
-        finish();
+       finish();
+       super.onBackPressed();
+    }
+
+    @Override
+    protected void onDestroy() {
+        android.os.Process.killProcess(android.os.Process.myPid());
+        super.onDestroy();
     }
 
 }//LoginActivity
