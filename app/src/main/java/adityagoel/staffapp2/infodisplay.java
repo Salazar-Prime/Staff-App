@@ -140,7 +140,7 @@ public class infodisplay extends AppCompatActivity {
                 Log.d("helloo", output.toString());
                 progress.dismiss();
                 Intent intent= new Intent(getApplicationContext(), roomnumber.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 startActivity(intent);
 
 
@@ -161,7 +161,7 @@ public class infodisplay extends AppCompatActivity {
     public void onBackPressed() {
         //super.onBackPressed();
         Intent intent = new Intent(getApplicationContext(), roomnumber.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
         startActivity(intent);
     }
 

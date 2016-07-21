@@ -105,7 +105,7 @@ public class roomnumber extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), hostelname.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 startActivity(i);
             }
         });
@@ -132,7 +132,7 @@ public class roomnumber extends AppCompatActivity {
             editor.putString("Login_Flag","0");
             editor.commit();
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
             startActivity(intent);
             return true;
         }
@@ -157,7 +157,7 @@ public class roomnumber extends AppCompatActivity {
 
     private void button_function() {
         intent = new Intent(getApplicationContext(), infodisplay.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
         prefs2 = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     }
 
@@ -165,7 +165,7 @@ public class roomnumber extends AppCompatActivity {
     public void onBackPressed() {
         //super.onBackPressed();
         intent = new Intent(getApplicationContext(), hostelname.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
         startActivity(intent);
     }
 

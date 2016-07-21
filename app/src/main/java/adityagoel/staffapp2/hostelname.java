@@ -116,14 +116,13 @@ public class hostelname extends AppCompatActivity {
             editor.commit();
             Log.d("pref..............",sp.getString("Login_Flag","default"));
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
             startActivity(intent);
             return true;
         }
 
         if (id == R.id.status) {
             Intent intent = new Intent(getApplicationContext(), today_status.class);
-            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             return true;
         }
@@ -133,7 +132,6 @@ public class hostelname extends AppCompatActivity {
 
     private void radiobutton_function(){
         intent = new Intent(getApplicationContext(), roomnumber.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     }
 

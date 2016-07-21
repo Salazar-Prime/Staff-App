@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
             SharedPreferences sp=getSharedPreferences(ip_pref, Context.MODE_PRIVATE);
             if(sp.getString("Login_Flag","default").equalsIgnoreCase("1")){
                 Intent intent = new Intent(getApplicationContext(), hostelname.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
                 startActivity(intent);
             }
         } catch (Exception e) {
@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (id == R.id.ip_config) {
             Intent intent = new Intent(getApplicationContext(), IP_settings.class);
-            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            //
             startActivity(intent);
             //            View view = findViewById(android.R.id.set);
 //            Snackbar.make(view, "IP Changed Successfully", Snackbar.LENGTH_LONG).show();
@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
             editor.putString("Login_Flag","1");
             editor.commit();
             Intent intent = new Intent(getApplicationContext(), hostelname.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
             startActivity(intent);
             return true;
         }
@@ -151,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString("Login_Flag","1");
                             editor.commit();
                             Intent intent = new Intent(getApplicationContext(), hostelname.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
                             startActivity(intent);
                         }
                         else if(responseCode==401){
