@@ -133,6 +133,7 @@ public class today_status extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        finish();
         super.onBackPressed();
     }
 }//today_status

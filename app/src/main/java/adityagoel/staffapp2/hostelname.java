@@ -3,6 +3,7 @@ package adityagoel.staffapp2;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,6 +41,7 @@ public class hostelname extends AppCompatActivity {
                 prefs.edit().putString("A", radiobuttonaibaan.getText().toString()).apply();
                 prefs.edit().putString("hostelname", radiobuttonaibaan.getText().toString()).apply();
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -50,6 +52,7 @@ public class hostelname extends AppCompatActivity {
                 prefs.edit().putString("B", radiobuttonbeauki.getText().toString()).apply();
                 prefs.edit().putString("hostelname", radiobuttonbeauki.getText().toString()).apply();
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -60,6 +63,7 @@ public class hostelname extends AppCompatActivity {
                 prefs.edit().putString("C", radiobuttonchimair.getText().toString()).apply();
                 prefs.edit().putString("hostelname", radiobuttonchimair.getText().toString()).apply();
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -70,6 +74,7 @@ public class hostelname extends AppCompatActivity {
                 prefs.edit().putString("D", radiobuttonduven.getText().toString()).apply();
                 prefs.edit().putString("hostelname", radiobuttonduven.getText().toString()).apply();
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -80,6 +85,7 @@ public class hostelname extends AppCompatActivity {
                 prefs.edit().putString("E", radiobuttonemiet.getText().toString()).apply();
                 prefs.edit().putString("hostelname", radiobuttonemiet.getText().toString()).apply();
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -90,6 +96,7 @@ public class hostelname extends AppCompatActivity {
                 prefs.edit().putString("F", radiobuttonfirpeal.getText().toString()).apply();
                 prefs.edit().putString("hostelname", radiobuttonfirpeal.getText().toString()).apply();
                 startActivity(intent);
+                finish();
             }
         });
     }//onCreate
@@ -116,14 +123,16 @@ public class hostelname extends AppCompatActivity {
             editor.commit();
             Log.d("pref..............",sp.getString("Login_Flag","default"));
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-
+            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            finish();
             return true;
         }
 
         if (id == R.id.status) {
             Intent intent = new Intent(getApplicationContext(), today_status.class);
             startActivity(intent);
+
             return true;
         }
 
@@ -137,9 +146,12 @@ public class hostelname extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finish();
+        //finish();
+        //System.exit(1);
+        //android.os.Process.killProcess(android.os.Process.myPid());
+        super.onBackPressed();
     }
-
+//
 //    @Override
 //    protected void onDestroy() {
 //        android.os.Process.killProcess(android.os.Process.myPid());

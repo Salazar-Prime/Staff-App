@@ -93,6 +93,7 @@ public class roomnumber extends AppCompatActivity {
                         prefs2.edit().putString("secondnumber", b).apply();
                         prefs2.edit().putString("thirdnumber", c).apply();
                         startActivity(intent);
+                        finish();
                     }
                 });
 
@@ -107,6 +108,7 @@ public class roomnumber extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(), hostelname.class);
 
                 startActivity(i);
+                finish();
             }
         });
     }//oncreate
@@ -132,14 +134,16 @@ public class roomnumber extends AppCompatActivity {
             editor.putString("Login_Flag","0");
             editor.commit();
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-
+            //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            finish();
             return true;
         }
 
         if (id == R.id.status) {
             Intent intent = new Intent(getApplicationContext(), today_status.class);
             startActivity(intent);
+            //finish();
             return true;
         }
 
@@ -165,8 +169,9 @@ public class roomnumber extends AppCompatActivity {
     public void onBackPressed() {
         //super.onBackPressed();
         intent = new Intent(getApplicationContext(), hostelname.class);
-
+        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
+        finish();
     }
 
 }

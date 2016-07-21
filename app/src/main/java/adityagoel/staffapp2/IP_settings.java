@@ -35,6 +35,7 @@ public class IP_settings extends AppCompatActivity {
                 editor.commit();
                 Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
+                finish();
                 Context context = getApplicationContext();
                 Toast.makeText(context, "IP Updated Successfully", Toast.LENGTH_LONG).show();
 
@@ -46,6 +47,7 @@ public class IP_settings extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
+        finish();
         super.onBackPressed();
     }
 }

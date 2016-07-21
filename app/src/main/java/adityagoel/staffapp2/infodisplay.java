@@ -142,6 +142,7 @@ public class infodisplay extends AppCompatActivity {
                 Intent intent= new Intent(getApplicationContext(), roomnumber.class);
 
                 startActivity(intent);
+                finish();
 
 
             } catch (MalformedURLException e) {
@@ -163,6 +164,7 @@ public class infodisplay extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), roomnumber.class);
 
         startActivity(intent);
+        finish();
     }
 
 
