@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class hostelname extends AppCompatActivity {
 
@@ -144,13 +146,36 @@ public class hostelname extends AppCompatActivity {
         prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
     }
 
+//    @Override
+//    public void onBackPressed() {
+//        //finish();
+//        //System.exit(1);
+//        //android.os.Process.killProcess(android.os.Process.myPid());
+//        super.onBackPressed();
+//    }
+
+
+    boolean doubleBackToExitPressedOnce = false;
+
     @Override
     public void onBackPressed() {
-        //finish();
-        //System.exit(1);
-        //android.os.Process.killProcess(android.os.Process.myPid());
-        super.onBackPressed();
-    }
+        if (doubleBackToExitPressedOnce) {
+            finish();
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+    }//onBackPressed
 //
 //    @Override
 //    protected void onDestroy() {
