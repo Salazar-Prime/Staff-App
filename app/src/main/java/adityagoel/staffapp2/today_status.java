@@ -129,5 +129,10 @@ public class today_status extends AppCompatActivity {
             }
             return null;
         }
+    }//Getstatus
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
-}
+}//today_status
